@@ -1,0 +1,30 @@
+{
+  "name": "physical-flag",
+  "version": "1.0.0",
+  "description": "實體 Flag 回報網站，該出去摸草了。 ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SCAICT/physical-flag.git"
+  },
+  "keywords": [
+    "SCAICT",
+    "CTF",
+    "flag"
+  ],
+  "author": "Elvis Mao",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SCAICT/physical-flag/issues"
+  },
+  "homepage": "https://github.com/SCAICT/physical-flag#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "iconv-lite": "^0.6.3",
+    "sqlite3": "^5.1.7"
+  }
+}

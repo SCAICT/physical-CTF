@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Collect Flag</title>
+</head>
+<body>
+<h1>Collect a Flag</h1>
+<form action="/sendFlag" method="POST">
+  <label for="username">Name:</label>
+  <input type="text" id="username" name="username" required>
+  <label for="flag">Flag:</label>
+  <input type="text" id="flag" name="flag" required>
+  <button type="submit">Submit</button>
+</form>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const flag = urlParams.get('flag');
+  //if no value of flag input, alert and redirect to home page
+  if (!flag) {
+    alert('No flag value');
+    window.location.href = '/';
+  }
+  // set value of flag input
+  document.getElementById('flag').value = flag;
+</script>
+</body>
+</html>
