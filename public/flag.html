@@ -1,28 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Collect Flag</title>
+  <meta charset="UTF-8">
+  <title>Collect Flag</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #FFF;
+      background-color: #000;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100svh;
+      font-size: 2em;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    main {
+      max-width: 600px;
+    }
+
+    input {
+      background-color: transparent;
+      outline: transparent;
+      border: none;
+      color: #FFF;
+      font-size: 2rem;
+      display: block;
+    }
+
+    #flag {
+      pointer-events: none;
+      text-align: center;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
+
+    #username {
+      margin: 1rem auto;
+      border-bottom: #FFF solid 1px;
+    }
+
+    button {
+      color: #FFF;
+      background-color: transparent;
+      border: 2px solid #FFF;
+      outline: transparent;
+      font-size: 2rem;
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #323232;
+    }
+
+    label {
+      font-size: 1rem;
+    }
+  </style>
 </head>
+
 <body>
-<h1>Collect a Flag</h1>
-<form action="/sendFlag" method="POST">
-  <label for="username">Name:</label>
-  <input type="text" id="username" name="username" required>
-  <label for="flag">Flag:</label>
-  <input type="text" id="flag" name="flag" required>
-  <button type="submit">Submit</button>
-</form>
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const flag = urlParams.get('flag');
-  //if no value of flag input, alert and redirect to home page
-  if (!flag) {
-    alert('No flag value');
-    window.location.href = '/';
-  }
-  // set value of flag input
-  document.getElementById('flag').value = flag;
-</script>
+  <main class="emfont-Cubic11">
+    <h1>你找到了一個旗子!</h1>
+    <form id="teamForm">
+      <input type="text" id="flag" name="flag" required>
+      <label for="username">隊伍名稱</label>
+      <input type="text" id="username" name="username" required>
+      <button type="submit">蒐集它</button>
+    </form>
+  </main>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const flag = urlParams.get('flag');
+    //if no value of flag input, alert and redirect to home page
+    if (!flag) {
+      alert('旗子是空的');
+      window.location.href = '/';
+    }
+    // set value of flag input
+    document.getElementById('flag').value = flag;
+
+    document.getElementById('teamForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const flag = document.getElementById('flag').value;
+
+            fetch('/sendFlag', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username,flag })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('發生錯誤，請稍後再試。');
+            });
+        });
+  </script>
+  <script src="https://font.emtech.cc/emfont.min.js"></script>
+  
+  <script>
+    // 看你還有甚麼要做的
+      document.addEventListener("DOMContentLoaded", function () {
+        emfont.init(function() {
+          console.log('所有字體載入完成!');
+        });
+      });
+  </script>
 </body>
+
 </html>

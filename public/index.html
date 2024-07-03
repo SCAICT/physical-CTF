@@ -1,23 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Scoreboard</title>
-</head>
-<body>
-    <h1>Player Scores</h1>
-    <table id="scores">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Scores will be inserted here -->
-        </tbody>
-    </table>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: #FFF;
+            background-color: #000;
+            padding: 2rem;
+        }
+
+        main {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-block: 2rem 1rem;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="emfont-Cubic11">
+        <h1>實體 Flag</h1>
+        <h2>排行榜</h2>
+        <table id="scores">
+            <thead>
+                <tr>
+                    <th>組別</th>
+                    <th>分數</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Scores will be inserted here -->
+            </tbody>
+        </table>
+    </main>
     <script>
         fetch('/list')
             .then(response => response.json())
@@ -33,5 +69,16 @@
                 console.error('Error fetching scores:', error);
             });
     </script>
+    <script src="https://font.emtech.cc/emfont.min.js"></script>
+  
+    <script>
+      // 看你還有甚麼要做的
+        document.addEventListener("DOMContentLoaded", function () {
+          emfont.init(function() {
+            console.log('所有字體載入完成!');
+          });
+        });
+    </script>
 </body>
+
 </html>

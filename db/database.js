@@ -69,7 +69,7 @@ db.serialize(() => {
                     if (err) {
                         return console.error(err.message);
                     }
-                    console.log(`A row has been inserted with rowid ${this.lastID}`);
+                    console.log(`${this.lastID} ${flag}`);
                 });
             }
         });
