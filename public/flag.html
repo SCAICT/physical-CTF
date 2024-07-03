@@ -46,6 +46,7 @@
       text-align: center;
       margin: auto;
       margin-bottom: 2rem;
+      width: 100%;
     }
 
     #username {
@@ -71,6 +72,10 @@
     label {
       font-size: 1rem;
     }
+
+    p {
+      display: none;
+    }
   </style>
 </head>
 
@@ -78,12 +83,14 @@
   <main class="emfont-Cubic11">
     <h1>你找到了一個旗子!</h1>
     <form id="teamForm">
-      <input type="text" id="flag" name="flag" required>
+      <input type="text" id="flag" name="flag" class="emfont-Cubic11" required>
       <label for="username">隊伍名稱</label>
       <input type="text" id="username" name="username" required>
-      <button type="submit">蒐集它</button>
+      <button type="submit" class="emfont-Cubic11">蒐集它</button>
     </form>
+    <p></p>
   </main>
+  <script src="https://font.emtech.cc/emfont.min.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const flag = urlParams.get('flag');
@@ -94,39 +101,34 @@
     }
     // set value of flag input
     document.getElementById('flag').value = flag;
+    document.querySelector("p").innerText = flag;
+    emfont.init(function () {
+      console.log('所有字體載入完成!');
+    });
 
-    document.getElementById('teamForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const flag = document.getElementById('flag').value;
+    document.getElementById('teamForm').addEventListener('submit', function (event) {
+      event.preventDefault();
 
-            fetch('/sendFlag', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username,flag })
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert(data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('發生錯誤，請稍後再試。');
-            });
+      const username = document.getElementById('username').value;
+      const flag = document.getElementById('flag').value;
+
+      fetch('/sendFlag', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, flag })
+      })
+        .then(response => response.text())
+        .then(data => {
+          alert(data);
+          window.location.href = "/";
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('發生錯誤，請稍後再試。');
         });
-  </script>
-  <script src="https://font.emtech.cc/emfont.min.js"></script>
-  
-  <script>
-    // 看你還有甚麼要做的
-      document.addEventListener("DOMContentLoaded", function () {
-        emfont.init(function() {
-          console.log('所有字體載入完成!');
-        });
-      });
+    });
   </script>
 </body>
 
