@@ -101,21 +101,19 @@
     }
     // set value of flag input
     document.getElementById('flag').value = flag;
+    document.getElementById("username").value = getCookie('flag');
     document.querySelector("p").innerText = flag;
     emfont.init(function () {
       console.log('所有字體載入完成!');
     });
 
-    const expires = new Date();
-    expires.setDate(expires.getDate() + 7);
-    document.cookie = `flag=${flag}; expires=${expires.toUTCString()}; path=/`;
-
     document.getElementById('teamForm').addEventListener('submit', function (event) {
       event.preventDefault();
-
       const username = document.getElementById('username').value;
       const flag = document.getElementById('flag').value;
-
+      const expires = new Date();
+      expires.setDate(expires.getDate() + 7);
+      document.cookie = `flag=${flag}; expires=${expires.toUTCString()}; path=/`;
       fetch('/sendFlag', {
         method: 'POST',
         headers: {
@@ -133,6 +131,17 @@
           alert('發生錯誤，請稍後再試。');
         });
     });
+
+    function getCookie(name) {
+      const cookies = document.cookie.split('; ');
+      for (let cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName === name) {
+          return decodeURIComponent(cookieValue);
+        }
+      }
+      return null;
+    }
   </script>
 </body>
 
