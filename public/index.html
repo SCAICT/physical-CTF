@@ -93,6 +93,9 @@
             color: #909090;
             text-decoration: none;
         }
+        .me td{
+            background-color: rgb(172, 165, 25)!important;
+        }
     </style>
     <script src="https://font.emtech.cc/emfont.min.js"></script>
 </head>
@@ -120,10 +123,12 @@
         fetch('/list')
             .then(response => response.json())
             .then(data => {
+                const user = getCookie('username');
                 const tableBody = document.getElementById('scores').getElementsByTagName('tbody')[0];
                 data.forEach(row => {
                     let tr = document.createElement('tr');
                     tr.innerHTML = `<td>${row.user}</td><td>${row.score}</td>`;
+                    if (row.user == user) tr.classList.add("me");
                     tableBody.appendChild(tr);
                 });
                 emfont.init();
@@ -131,16 +136,17 @@
             .catch(error => {
                 console.error('Error fetching scores:', error);
             });
-    </script>
 
-
-    <script>
-        // // 看你還有甚麼要做的
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     emfont.init(function () {
-        //         console.log('所有字體載入完成!');
-        //     });
-        // });
+        function getCookie(name) {
+            const cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.split('=');
+                if (cookieName === name) {
+                    return decodeURIComponent(cookieValue);
+                }
+            }
+            return null;
+        }
     </script>
 </body>
 

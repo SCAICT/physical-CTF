@@ -1,14 +1,12 @@
 /** @format */
 
 const express = require("express");
-const cookieParser = require("cookie-parser");
 const db = require("./db/database");
 const bodyParser = require('body-parser');
 
 const app = express();
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
@@ -37,7 +35,6 @@ app.get("/flag", (req, res) => {
 app.post("/sendFlag", (req, res) => {
   const { flag, username } = req.body;
   console.log(flag,username);
-  res.cookie("username", username, { maxAge: 86400000, httpOnly: true }); // 24-hour cookie
 
   // Check if the flag exists
   db.get("SELECT id FROM flags WHERE flag = ?", [flag], (err, row) => {

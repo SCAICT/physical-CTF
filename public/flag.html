@@ -101,7 +101,7 @@
     }
     // set value of flag input
     document.getElementById('flag').value = flag;
-    document.getElementById("username").value = getCookie('flag');
+    document.getElementById("username").value = getCookie('username');
     document.querySelector("p").innerText = flag;
     emfont.init(function () {
       console.log('所有字體載入完成!');
@@ -113,7 +113,7 @@
       const flag = document.getElementById('flag').value;
       const expires = new Date();
       expires.setDate(expires.getDate() + 7);
-      document.cookie = `flag=${flag}; expires=${expires.toUTCString()}; path=/`;
+      document.cookie = `username=${username}; expires=${expires.toUTCString()}; path=/`;
       fetch('/sendFlag', {
         method: 'POST',
         headers: {
