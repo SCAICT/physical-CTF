@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 
 <head>
   <meta charset="UTF-8">
@@ -105,6 +105,10 @@
     emfont.init(function () {
       console.log('所有字體載入完成!');
     });
+
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 7);
+    document.cookie = `flag=${flag}; expires=${expires.toUTCString()}; path=/`;
 
     document.getElementById('teamForm').addEventListener('submit', function (event) {
       event.preventDefault();
