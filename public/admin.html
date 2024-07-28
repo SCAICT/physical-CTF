@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Admin Page</h1>
+    <form id="adminForm">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="flags">Flags (one per line):</label><br>
+        <textarea id="flags" name="flags" rows="10" cols="50"></textarea><br><br>
+        <button type="submit">Update Flags</button>
+    </form>
+    <p id="responseMessage"></p>
+
+    <h2>Flags</h2>
+    <textarea id="currentFlags" rows="10" cols="50" readonly></textarea>
+
+    <h2>Collection Logs</h2>
+    <table id="logsTable" border="1">
+        <thead>
+            <tr>
+                <th>Flag ID</th>
+                <th>User</th>
+                <th>Collected At</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button id="downloadSQLite">Download SQLite</button>
+    <button id="downloadCSV">Download CSV</button>
+
+    <script>
+        document.getElementById('adminForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const flags = document.getElementById('flags').value;
+
+            fetch('/updateFlags', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ password, flags }),
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('responseMessage').textContent = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        fetch('/admin/flags')
+            .then(response => response.json())
+            .then(data => {
+                const flagsTextarea = document.getElementById('currentFlags');
+                flagsTextarea.value = data.map(flag => flag.flag).join('\n');
+            });
+
+        fetch('/admin/logs')
+            .then(response => response.json())
+            .then(data => {
+                const logsTableBody = document.getElementById('logsTable').querySelector('tbody');
+                data.forEach(log => {
+                    const row = logsTableBody.insertRow();
+                    row.insertCell(0).textContent = log.flag_id;
+                    row.insertCell(1).textContent = log.user;
+                    row.insertCell(2).textContent = log.collectedAt;
+                });
+            });
+
+        document.getElementById('downloadSQLite').addEventListener('click', () => {
+            window.location.href = '/admin/download/sqlite';
+        });
+
+        document.getElementById('downloadCSV').addEventListener('click', () => {
+            window.location.href = '/admin/download/csv';
+        });
+    </script>
+</body>
+</html>
