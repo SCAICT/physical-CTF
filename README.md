@@ -2,6 +2,8 @@
 
 大地遊戲實體 Flag 回報網站。平常 Code 太久，該出去摸草了。
 
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IW0VW?referralCode=Edit-Mr)
+
 ![screenshots](demo/home.png)
 
 歡迎使用 Physical CTF 回報網站。這個網頁應用程式讓用戶可以提交和蒐集旗子 (flags)，並且在後台管理旗子。本文檔將引導你完成安裝、配置、使用以及管理旗子的步驟。
@@ -25,6 +27,10 @@ https://<你的網域>.com/flag?flag=<旗子>
 5. [API 端點](#API-端點)
 
 ## 安裝
+
+> 可點擊 "Deploy on Zeabur" 按鈕來快速部署到 Zeabur 平台。
+> 
+> [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IW0VW?referralCode=Edit-Mr)
 
 在開始之前，請確保你已經安裝了 [Node.js](https://nodejs.org/) 和 [npm](https://www.npmjs.com/)。然後，請按照以下步驟進行安裝：
 

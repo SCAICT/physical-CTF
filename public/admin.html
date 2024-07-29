@@ -32,9 +32,10 @@
                 <tbody></tbody>
             </table>
             <footer>
-                Made by <a href="github.com/SCAICT/physical-CTF">@SCAICT</a> width ❤️
+                Made by
+                <a href="github.com/SCAICT/physical-CTF">@SCAICT</a> width ❤️
             </footer>
-                <div style=display:none></div>
+            <div style="display: none"></div>
         </main>
         <script>
             document
@@ -55,24 +56,25 @@
                         });
                 });
 
-                Promise.all([
-    fetch("/admin/flags").then(response => response.json()),
-    fetch("/admin/logs").then(response => response.json())
-]).then(([flagsData, logsData]) => {
-    const flagsTextarea = document.getElementById("flagsTextarea");
-    const flagsValue = flagsData.map(flag => flag.flag).join("\n");
-    flagsTextarea.value = flagsValue;
-    document.querySelector("div").innerHTML =flagsValue;
-    const logsTableBody = document.getElementById("logsTable").querySelector("tbody");
-    logsData.forEach(log => {
-        const row = logsTableBody.insertRow();
-        row.insertCell(0).textContent = log.flag;
-        row.insertCell(1).textContent = log.user;
-        row.insertCell(2).textContent = log.collectedAt;
-    });
-    emfont.init();
-});
-
+            Promise.all([
+                fetch("/admin/flags").then(response => response.json()),
+                fetch("/admin/logs").then(response => response.json()),
+            ]).then(([flagsData, logsData]) => {
+                const flagsTextarea = document.getElementById("flagsTextarea");
+                const flagsValue = flagsData.map(flag => flag.flag).join("\n");
+                flagsTextarea.value = flagsValue;
+                document.querySelector("div").innerHTML = flagsValue;
+                const logsTableBody = document
+                    .getElementById("logsTable")
+                    .querySelector("tbody");
+                logsData.forEach(log => {
+                    const row = logsTableBody.insertRow();
+                    row.insertCell(0).textContent = log.flag;
+                    row.insertCell(1).textContent = log.user;
+                    row.insertCell(2).textContent = log.collectedAt;
+                });
+                emfont.init();
+            });
 
             document
                 .getElementById("downloadSQLite")

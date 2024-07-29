@@ -12,13 +12,9 @@ var db = new sqlite3.Database(
 );
 
 const flags = [
-    "SCAICT{eazy}",
-    "SCAICT{M3}",
-    "SCAICT{RIP_Chao_Printer}",
-    "SCAICT{chao_chaos}",
-    "SCAICT{he_need_a_boyfriend}",
-    "SCAICT{i_am_gay}",
-    "SCAICT{owo}",
+    "flag{dummy_flag_1}",
+    "flag{dummy_flag_2}",
+    "flag{dummy_flag_3}",
 ];
 
 db.serialize(() => {
