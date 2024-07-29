@@ -1,9 +1,12 @@
-# physical-flag
-實體 Flag 回報網站。Code 太久，該出去摸草了。
+# <img src=public/logo.png height=32px align=center> Physical CTF
 
-歡迎使用實體 flag 回報網站！這個網頁應用程式讓用戶可以提交和蒐集旗子 (flags)，並且在後台管理旗子。本文檔將引導你完成安裝、配置、使用以及管理旗子的步驟。
+大地遊戲實體 Flag 回報網站。平常 Code 太久，該出去摸草了。
 
-這個遊戲通常的玩法是印出帶有 QRCode 的旗子（通常使用 A4 紙列印並黏貼在竹筷上），然後關主或是兩隊互相將旗子藏在指定範圍內的角落。於時間內搜集最多旗子的隊伍獲勝。
+![screenshots](demo/home.png)
+
+歡迎使用 Physical CTF 回報網站。這個網頁應用程式讓用戶可以提交和蒐集旗子 (flags)，並且在後台管理旗子。本文檔將引導你完成安裝、配置、使用以及管理旗子的步驟。
+
+這個遊戲通常的玩法是印出數個帶有 QRCode 的旗子（通常使用 A4 紙列印並黏貼在竹筷上），然後關主或是兩隊互相將旗子藏在指定範圍內的角落。於時間內搜集最多旗子的隊伍獲勝。
 
 以下是正常的連結格式：
 
@@ -59,11 +62,9 @@ ADMIN_PASSWORD=yourpassword
 
 用戶可以通過表單提交旗子。提交的旗子將被驗證是否存在於資料庫中，如果存在且未被當前用戶蒐集過，將被記錄下來。
 
-### 查看排行榜
-
-用戶可以通過訪問 `/list` 端點查看旗子蒐集排行榜。
-
 ## 後台管理
+
+![管理員介面](demo/admin.png)
 
 管理員可以通過管理後台頁面來添加和刪除 flags。
 
@@ -75,9 +76,9 @@ ADMIN_PASSWORD=yourpassword
 ### 範例
 
 ```plaintext
-SCAICT{new_flag_1}
-SCAICT{new_flag_2}
-SCAICT{new_flag_3}
+flag{new_flag_1}
+flag{new_flag_2}
+flag{new_flag_3}
 ```
 
 提交後，這些 flags 將被添加到資料庫中。
