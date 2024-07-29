@@ -1,6 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
 
-// Open a database handle
 var db = new sqlite3.Database(
     "./flaggame.db",
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
@@ -27,9 +26,9 @@ db.serialize(() => {
         "CREATE TABLE IF NOT EXISTS flags (id INTEGER PRIMARY KEY AUTOINCREMENT, flag TEXT UNIQUE, createdAt TEXT DEFAULT CURRENT_TIMESTAMP)"
     );
     db.run(
-        "CREATE TABLE IF NOT EXISTS collections (flag_id INTEGER, user TEXT, collectedAt TEXT DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(flag_id) REFERENCES flags(id))"
+        "CREATE TABLE IF NOT EXISTS collections (flag TEXT, user TEXT, collectedAt TEXT DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(flag) REFERENCES flags(flag))"
     );
-    
+
     flags.forEach(flag => {
         db.get("SELECT * FROM flags WHERE flag = ?", [flag], (err, row) => {
             if (err) {

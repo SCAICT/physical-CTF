@@ -1,0 +1,124 @@
+/** @format */
+
+#flag,
+body,
+footer,
+h1,
+h2 {
+    text-align: center;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+    color: #fff;
+    background-color: #000;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    font-size: 2em;
+}
+button,
+input,textarea {
+    background-color: transparent;
+    outline: transparent;
+    font-size: 2rem;
+    color: #fff;
+    font-family: inherit;
+}
+textarea{
+    border: solid #FFF 2px;
+    display:block;
+    max-width:100%;
+}
+h1 {
+    margin-bottom: 1rem;
+}
+h2 {
+    margin-block: 2rem 1rem;
+    font-size: 2rem;
+}
+main {
+    max-width: min(1000px,100%);
+    margin: auto;
+}
+input {
+    border: none;
+    border-bottom: 1px solid #fff;
+    display: block;
+}
+#flag {
+    pointer-events: none;
+    border: none;
+    margin: auto auto 2rem;
+    width: 100%;
+}
+#username {
+    margin: 1rem auto;
+}
+button {
+    border: 2px solid #fff;
+    margin-top: 3rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+footer,
+label {
+    font-size: 1rem;
+}
+button:hover {
+    background-color: #323232;
+}
+p {
+    display: none;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f9f9f9;
+}
+td,
+th {
+    padding: 0.5rem 1rem;
+    border: 3px solid #000;
+    position: relative;
+    background: #3c3c3c;
+}
+td::after,
+th::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #b0b0b0;
+    top: 5px;
+    left: 5px;
+    z-index: -1;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+th {
+    font-weight: 400;
+    background-color: #727272;
+    color: #fff;
+}
+tbody tr:nth-child(odd) td {
+    background-color: #101010;
+}
+footer {
+    margin-top: 2rem;
+    color: #909090;
+}
+footer a {
+    color: #909090;
+    text-decoration: none;
+}
+.me td {
+    background-color: #aca519 !important;
+}
