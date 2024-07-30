@@ -1,0 +1,81 @@
+service: flaggame
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  environment:
+    ADMIN_PASSWORD: ${env:ADMIN_PASSWORD}
+
+functions:
+  list:
+    handler: handler.list
+    events:
+      - http:
+          path: list
+          method: get
+
+  flag:
+    handler: handler.flag
+    events:
+      - http:
+          path: flag
+          method: get
+
+  admin:
+    handler: handler.adminGet
+    events:
+      - http:
+          path: admin
+          method: get
+
+  adminLogin:
+    handler: handler.adminPost
+    events:
+      - http:
+          path: admin
+          method: post
+
+  updateFlags:
+    handler: handler.updateFlags
+    events:
+      - http:
+          path: admin/flags
+          method: post
+
+  sendFlag:
+    handler: handler.sendFlag
+    events:
+      - http:
+          path: sendFlag
+          method: post
+
+resources:
+  Resources:
+    FlagsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: flags
+        AttributeDefinitions:
+          - AttributeName: flag
+            AttributeType: S
+        KeySchema:
+          - AttributeName: flag
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    CollectionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: collections
+        AttributeDefinitions:
+          - AttributeName: user
+            AttributeType: S
+          - AttributeName: flag
+            AttributeType: S
+        KeySchema:
+          - AttributeName: user
+            KeyType: HASH
+          - AttributeName: flag
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
