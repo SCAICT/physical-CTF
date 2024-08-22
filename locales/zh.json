@@ -1,0 +1,15 @@
+{
+    "title": "實體 CTF",
+    "leaderboard": "排行榜",
+    "teams": "隊伍",
+    "score": "分數",
+    "foundFlag": "你找到了一個旗子!",
+    "teamname": "隊伍名稱",
+    "collectIt": "收集它!",
+    "adminPage": "管理員頁面",
+    "updateFlag": "更新旗子",
+    "download": "下載",
+    "logout": "登出",
+    "collectRecord": "收集記錄",
+    "collectTime": "收集時間"
+}

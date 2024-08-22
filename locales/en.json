@@ -1,0 +1,15 @@
+{
+    "title": "Physical CTF",
+    "leaderboard": "Leaderboard",
+    "teams": "Teams",
+    "score": "Score",
+    "foundFlag": "You found a flag!",
+    "teamname": "Team Name",
+    "collectIt": "Collect it!",
+    "adminPage": "Admin Page",
+    "updateFlag": "Update Flag",
+    "download": "Download",
+    "logout": "Logout",
+    "collectRecord": "Collect Record",
+    "collectTime": "Collect Time"
+}

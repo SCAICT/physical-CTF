@@ -51,9 +51,10 @@ https://<你的網域>.com/flag?flag=<旗子>
 
 ```
 ADMIN_PASSWORD=yourpassword
+SECRET=yoursecret
 ```
 
-將 `yourpassword` 替換為你希望使用的管理密碼。
+將 `yourpassword` 替換為你希望使用的管理密碼，將 `yoursecret` 替換為一個隨機的字串。
 
 ## 使用說明
 
