@@ -1,86 +1,99 @@
 # <img src=public/logo.png height=32px align=center> Physical CTF
 
-大地遊戲實體 Flag 回報網站。平常 Code 太久，該出去摸草了。
+A website for reporting Physical CTF Flags. You've been coding for too long—it's time to get out and touch some grass.
+
+> 繁體中文版本的文檔可在[這裡](README.zh.md)找到。
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IW0VW?referralCode=Edit-Mr)
 
-![screenshots](demo/home.png)
+![screenshots](demo/home.en.png)
 
-歡迎使用 Physical CTF 回報網站。這個網頁應用程式讓用戶可以提交和蒐集旗子 (flags)，並且在後台管理旗子。本文檔將引導你完成安裝、配置、使用以及管理旗子的步驟。
+Welcome to the Physical CTF Reporting Website. This web application allows users to submit and collect flags and manage them through a backend interface. This documentation will guide you through the steps of installation, configuration, usage, and flag management.
 
-這個遊戲通常的玩法是印出數個帶有 QRCode 的旗子（通常使用 A4 紙列印並黏貼在竹筷上），然後關主或是兩隊互相將旗子藏在指定範圍內的角落。於時間內搜集最多旗子的隊伍獲勝。
+This game typically involves printing several flags with QR codes (usually printed on A4 paper and attached to chopsticks). The game master or teams hide the flags in designated areas. The team that collects the most flags within the time limit wins.
 
-以下是正常的連結格式：
+Here’s the standard link format:
 
 ```bash
-https://<你的網域>.com/flag?flag=<旗子>
+https://<your-domain>.com/flag?flag=<your-flag>
 ```
 
-如 https://flag.scaict.org/flag?flag=flag{iL0veSCAICT}
+For example: https://flag.scaict.org/flag?flag=flag{iL0veSCAICT}
 
-## 目錄
+## Table of Contents
 
-1. [安裝](#安裝)
-2. [配置](#配置)
-3. [使用說明](#使用說明)
-4. [後台管理](#後台管理)
-5. [API 端點](#API-端點)
+- [ Physical CTF](#-physical-ctf)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+  - [Usage Instructions](#usage-instructions)
+    - [Submitting Flags](#submitting-flags)
+  - [Backend Management](#backend-management)
+    - [Example](#example)
+  - [API Endpoints](#api-endpoints)
+    - [GET `/`](#get-)
+    - [GET `/list`](#get-list)
+    - [GET `/flag`](#get-flag)
+    - [POST `/sendFlag`](#post-sendflag)
+    - [GET `/admin`](#get-admin)
+    - [POST `/admin`](#post-admin)
+- [License](#license)
 
-## 安裝
+## Installation
 
-> 可點擊 "Deploy on Zeabur" 按鈕來快速部署到 Zeabur 平台。
+> You can quickly deploy the application to the Zeabur platform by clicking the "Deploy on Zeabur" button.
 > 
 > [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IW0VW?referralCode=Edit-Mr)
 
-在開始之前，請確保你已經安裝了 [Node.js](https://nodejs.org/) 和 [npm](https://www.npmjs.com/)。然後，請按照以下步驟進行安裝：
+Before starting, ensure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed. Then, follow these steps to install the application:
 
-1. 克隆項目：
+1. Clone the project:
     ```bash
     git clone https://github.com/SCAICT/physical-flag.git
     cd physical-flag
     ```
 
-2. 安裝依賴：
+2. Install dependencies:
     ```bash
     npm install
     ```
 
-## 配置
+## Configuration
 
-在項目根目錄下創建一個 `.env` 文件，並添加以下內容來配置管理密碼：
+Create a `.env` file in the project root directory and add the following content to configure the admin password:
 
 ```
 ADMIN_PASSWORD=yourpassword
 SECRET=yoursecret
 ```
 
-將 `yourpassword` 替換為你希望使用的管理密碼，將 `yoursecret` 替換為一個隨機的字串。
+Replace `yourpassword` with your desired admin password, and `yoursecret` with a random string.
 
-## 使用說明
+## Usage Instructions
 
-1. 啟動伺服器：
+1. Start the server:
     ```bash
     npm start
     ```
 
-2. 在瀏覽器中訪問 `http://localhost:3000` 查看應用程式首頁。
+2. Visit `http://localhost:3000` in your browser to view the application homepage.
 
-### 提交旗子
+### Submitting Flags
 
-用戶可以通過表單提交旗子。提交的旗子將被驗證是否存在於資料庫中，如果存在且未被當前用戶蒐集過，將被記錄下來。
+Users can submit flags through a form. The submitted flag will be verified against the database, and if it exists and hasn't been collected by the current user, it will be recorded.
 
-## 後台管理
+## Backend Management
 
-![管理員介面](demo/admin.png)
+![Admin Interface](demo/admin.en.png)
 
-管理員可以通過管理後台頁面來添加和刪除 flags。
+Admins can add or remove flags via the backend management page.
 
-1. 在瀏覽器中訪問 `http://localhost:3000/admin` 進入管理頁面。
-2. 輸入管理密碼。
-3. 在 textarea 中添加或刪除 flags（每行一個）。
-4. 點擊 "Update Flags" 按鈕保存更改。
+1. Visit `http://localhost:3000/admin` in your browser to access the admin page.
+2. Enter the admin password.
+3. Add or remove flags in the textarea (one per line).
+4. Click the "Update Flags" button to save changes.
 
-### 範例
+### Example
 
 ```plaintext
 flag{new_flag_1}
@@ -88,19 +101,19 @@ flag{new_flag_2}
 flag{new_flag_3}
 ```
 
-提交後，這些 flags 將被添加到資料庫中。
+Once submitted, these flags will be added to the database.
 
-## API 端點
+## API Endpoints
 
 ### GET `/`
 
-顯示首頁。
+Displays the homepage.
 
 ### GET `/list`
 
-返回用戶蒐集旗子的排行榜。
+Returns the leaderboard of users who have collected flags.
 
-範例響應：
+Sample response:
 ```json
 [
     {"user": "Alice", "score": 3},
@@ -110,13 +123,13 @@ flag{new_flag_3}
 
 ### GET `/flag`
 
-顯示旗子提交頁面。
+Displays the flag submission page.
 
 ### POST `/sendFlag`
 
-提交旗子。
+Submits a flag.
 
-請求體：
+Request body:
 ```json
 {
     "flag": "SCAICT{example_flag}",
@@ -124,20 +137,20 @@ flag{new_flag_3}
 }
 ```
 
-範例響應：
+Sample response:
 ```plaintext
-Alice 成功蒐集 SCAICT{example_flag}
+Alice successfully collected SCAICT{example_flag}
 ```
 
 ### GET `/admin`
 
-顯示管理頁面。
+Displays the admin page.
 
 ### POST `/admin`
 
-更新 flags。
+Updates flags.
 
-請求體：
+Request body:
 ```json
 {
     "password": "yourpassword",
@@ -145,7 +158,12 @@ Alice 成功蒐集 SCAICT{example_flag}
 }
 ```
 
-範例響應：
+Sample response:
 ```plaintext
 Flags updated successfully
+```
+
+# License
+
+This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
 ```
