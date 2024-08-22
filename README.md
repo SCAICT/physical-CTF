@@ -1,4 +1,4 @@
-# <img src=public/logo.png height=32px align=center> Physical CTF
+# ![](https://raw.githubusercontent.com/SCAICT/physical-CTF/main/public/favicon.png) Physical CTF
 
 A website for reporting Physical CTF Flags. You've been coding for too long—it's time to get out and touch some grass.
 
@@ -6,7 +6,7 @@ A website for reporting Physical CTF Flags. You've been coding for too long—it
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IW0VW?referralCode=Edit-Mr)
 
-![screenshots](demo/home.en.png)
+![screenshots](https://raw.githubusercontent.com/SCAICT/physical-CTF/main/demo/home.en.png)
 
 Welcome to the Physical CTF Reporting Website. This web application allows users to submit and collect flags and manage them through a backend interface. This documentation will guide you through the steps of installation, configuration, usage, and flag management.
 
@@ -84,7 +84,7 @@ Users can submit flags through a form. The submitted flag will be verified again
 
 ## Backend Management
 
-![Admin Interface](demo/admin.en.png)
+![Admin Interface](https://raw.githubusercontent.com/SCAICT/physical-CTF/main/demo/admin.en.png)
 
 Admins can add or remove flags via the backend management page.
 
