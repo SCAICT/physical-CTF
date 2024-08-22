@@ -1,7 +1,7 @@
 <!-- @format -->
 
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -12,7 +12,7 @@
     </head>
     <body>
         <main class="emfont-Cubic11">
-            <h1>你找到了一個旗子!</h1>
+            <h1>You Found a Flag!</h1>
             <form id="teamForm">
                 <input
                     type="text"
@@ -21,14 +21,18 @@
                     class="emfont-Cubic11"
                     required
                 />
-                <label for="username">隊伍名稱</label>
+                <label for="username">Team Name</label>
                 <input type="text" id="username" name="username" required />
-                <button type="submit" class="emfont-Cubic11">蒐集它</button>
+                <button type="submit" class="emfont-Cubic11">
+                    Collect It!
+                </button>
             </form>
             <p></p>
             <footer>
                 Made by
                 <a href="github.com/SCAICT/physical-CTF">@SCAICT</a> width ❤️
+                <br />🌍 <a href="/lang/zh/">中文</a> ·
+                <a href="/lang/en">English</a>
             </footer>
         </main>
         <script>
@@ -36,7 +40,7 @@
             const flag = urlParams.get("flag");
             //if no value of flag input, alert and redirect to home page
             if (!flag) {
-                alert("旗子是空的");
+                alert("The flag is empty");
                 window.location.href = "/";
             }
             // set value of flag input
@@ -44,7 +48,7 @@
             document.getElementById("username").value = getCookie("username");
             document.querySelector("p").innerText = flag;
             emfont.init(function () {
-                console.log("所有字體載入完成!");
+                console.log("All Fonts loaded!");
             });
 
             document
@@ -70,7 +74,7 @@
                         })
                         .catch(error => {
                             console.error("Error:", error);
-                            alert("發生錯誤，請稍後再試。");
+                            alert("Error: " + error);
                         });
                 });
 

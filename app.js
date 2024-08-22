@@ -29,6 +29,18 @@ app.use(
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
+app.get("/lang/:lang/:page", (req, res) => {
+    // save cookie for 1 year
+    res.cookie("lang", req.params.lang, { maxAge: 31536000000 });
+    res.redirect("/" + req.params.page);
+});
+
+app.get("/lang/:lang/", (req, res) => {
+    // save cookie for 1 year
+    res.cookie("lang", req.params.lang, { maxAge: 31536000000 });
+    res.redirect("/");
+});
+
 const sendPage = (req, res, page) => {
     // get cookie from request
     var lang = req.cookies.lang;
@@ -37,9 +49,9 @@ const sendPage = (req, res, page) => {
         lang = req.acceptsLanguages(supportedLangs) || "en";
     }
     if (lang === "en") {
-        res.sendFile(__dirname + "/public/" + page + ".en.html");
+        res.sendFile(__dirname + "/pages/" + page + ".en.html");
     } else {
-        res.sendFile(__dirname + "/public/" + page + ".html");
+        res.sendFile(__dirname + "/pages/" + page + ".html");
     }
 };
 app.get("/", (req, res) => {
@@ -66,7 +78,7 @@ app.get("/flag", (req, res) => {
 
 app.get("/admin", (req, res) => {
     if (req.session.isAdmin) {
-       sendPage(req, res, "admin");
+        sendPage(req, res, "admin");
     } else {
         sendPage(req, res, "admin_login");
     }
@@ -77,7 +89,7 @@ app.post("/admin", (req, res) => {
 
     if (password === ADMIN_PASSWORD) {
         req.session.isAdmin = true;
-      sendPage(req, res, "admin");
+        sendPage(req, res, "admin");
     } else {
         res.status(403).send("密碼錯誤");
     }

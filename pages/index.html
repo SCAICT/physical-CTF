@@ -1,0 +1,64 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <title>實體 CTF</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://font.emtech.cc/emfont.min.js"></script>
+    </head>
+    <body>
+        <main class="emfont-Cubic11">
+            <h1>實體 CTF</h1>
+            <h2>排行榜</h2>
+            <table id="scores">
+                <thead>
+                    <tr>
+                        <th>組別</th>
+                        <th>分數</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <footer>
+                Made by
+                <a href="github.com/SCAICT/physical-CTF">@SCAICT</a> width ❤️
+                <br>🌍 <a href="/lang/zh/">中文</a> · <a href="/lang/en">English</a>
+            </footer>
+        </main>
+        <script>
+            fetch("/list")
+                .then(response => response.json())
+                .then(data => {
+                    const user = getCookie("username");
+                    const tableBody = document
+                        .getElementById("scores")
+                        .getElementsByTagName("tbody")[0];
+                    data.forEach(row => {
+                        let tr = document.createElement("tr");
+                        tr.innerHTML = `<td>${row.user}</td><td>${row.score}</td>`;
+                        if (row.user == user) tr.classList.add("me");
+                        tableBody.appendChild(tr);
+                    });
+                    emfont.init();
+                })
+                .catch(error => {
+                    console.error("Error fetching scores:", error);
+                });
+
+            function getCookie(name) {
+                const cookies = document.cookie.split("; ");
+                for (let cookie of cookies) {
+                    const [cookieName, cookieValue] = cookie.split("=");
+                    if (cookieName === name) {
+                        return decodeURIComponent(cookieValue);
+                    }
+                }
+                return null;
+            }
+        </script>
+    </body>
+</html>

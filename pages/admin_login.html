@@ -1,0 +1,53 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <title>管理員登入 | 實體 CTF</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://font.emtech.cc/emfont.min.js"></script>
+    </head>
+    <body>
+        <main class="emfont-Cubic11">
+            <h1>管理員登入</h1>
+            <form id="loginForm">
+                <label for="password">密碼</label>
+                <input type="password" id="password" name="password" required />
+                <button type="submit">登入</button>
+            </form>
+            <footer>
+                Made by
+                <a href="github.com/SCAICT/physical-CTF">@SCAICT</a> width ❤️
+                <br />🌍 <a href="/lang/zh/admin">中文</a> ·
+                <a href="/lang/en/admin">English</a>
+            </footer>
+        </main>
+        <script>
+            emfont.init();
+            document
+                .getElementById("loginForm")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    const password = document.getElementById("password").value;
+
+                    fetch("/admin", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ password }),
+                    }).then(response => {
+                        if (response.status === 403) {
+                            alert("Invalid password");
+                        } else {
+                            window.location.href = "/admin";
+                        }
+                    });
+                });
+        </script>
+    </body>
+</html>
