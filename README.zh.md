@@ -18,7 +18,7 @@
 https://<你的網域>.com/flag?flag=<旗子>
 ```
 
-如 https://flag.scaict.org/flag?flag=flag{iL0veSCAICT}
+如 https://demoflag.scaict.org/flag?flag=flag{iL0veSCAICT}
 
 ## 目錄
 
