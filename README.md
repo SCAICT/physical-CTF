@@ -18,7 +18,7 @@ Here’s the standard link format:
 https://<your-domain>.com/flag?flag=<your-flag>
 ```
 
-For example: https://flag.scaict.org/flag?flag=flag{iL0veSCAICT}
+For example: https://demoflag.scaict.org/flag?flag=flag{iL0veSCAICT}
 
 ## Table of Contents
 
